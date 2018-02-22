@@ -3,7 +3,7 @@
     "displayName": "git-coauthors",
     "description": "Easily add/remove coauthors from a developing session",
     "version": "0.1.0",
-    "publisher": "nones",
+    "publisher": "drrouman",
     "repository": {
         "type": "git",
         "url": "https://github.com/rjimenezda/vscode-coauthor.git"
