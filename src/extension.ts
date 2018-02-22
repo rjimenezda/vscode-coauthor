@@ -32,16 +32,22 @@ export function deactivate() {
 }
 
 class Repo {
-  private path: string;
+  private path: string = "";
+  private previousCoAuthor: string = "";
   private inputBox: vscode.SourceControlInputBox;
 
   constructor (path:string, input: vscode.SourceControlInputBox) {
     this.inputBox = input;
-    this.path = "";
   }
 
   getPath () {
     return this.path;
+  }
+
+  addCoauthorString (value: string) {
+    this.inputBox.value = this.inputBox.value.replace(this.previousCoAuthor, '');
+    this.previousCoAuthor = `\n\n${value}`;
+    this.inputBox.value = `${this.inputBox.value}${this.previousCoAuthor}`;
   }
 }
 
@@ -55,23 +61,43 @@ class CoAuthoring {
   constructor (gitApi: any) {
     this.gitApi = gitApi;
 
-    const startPairing = vscode.commands.registerCommand('extension.addBuddy', this.startPairing, this);
+    const addBuddy = vscode.commands.registerCommand('extension.addBuddy', this.addBuddy, this);
+    const appendPairing = vscode.commands.registerCommand('extension.appendPairing', this.appendPairing, this);
     const stopPairing = vscode.commands.registerCommand('extension.stopPairing', this.stopPairing, this);
     const selectRepo = vscode.commands.registerCommand('extension.selectRepo', this.pickRepo, this);
 
-    this.disposables.push(startPairing);
+    this.disposables.push(addBuddy);
     this.disposables.push(stopPairing);
     this.disposables.push(selectRepo);
+    this.disposables.push(appendPairing);
   }
 
-  public async startPairing () {
+  public async appendPairing () {
+    if (this.pairingSet.size === 0) {
+      vscode.window.showErrorMessage('No pairing buddies selected 😔.');
+      return;
+    }
+
+    await this.pickRepoIfRequired();
+
+    if (this.currentRepo !== undefined) {
+      const repo = this.repos.get(this.currentRepo);
+      repo && repo.addCoauthorString(this.getPairingString());
+    }
+  }
+
+  private async pickRepoIfRequired() {
+    if (this.currentRepo === undefined) {
+      await this.pickRepo();
+    }
+  }
+
+  public async addBuddy () {
     if (this.repos.size === 0) {
       await this._getRepos();
     }
 
-    if (this.currentRepo === undefined) {
-      await this.pickRepo();
-    }
+    await this.pickRepoIfRequired();
 
     this._getBuddies();
   }
@@ -167,12 +193,20 @@ class CoAuthoring {
   }
 
   private async pickRepo () {
+    await this._getRepos();
     const repos = [ ...this.repos.entries() ];
+
+    if (repos.length === 0) {
+      return;
+    }
+
     if (repos.length > 1) {
       this.currentRepo = await vscode.window.showQuickPick(
         repos
           .map(([value, repo]: [string, Repo]) => value)
       );
+    } else {
+      this.currentRepo = repos[0][0];
     }
   }
 

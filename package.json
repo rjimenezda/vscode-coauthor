@@ -2,7 +2,7 @@
     "name": "git-coauthors",
     "displayName": "git-coauthors",
     "description": "Easily add/remove coauthors from a developing session",
-    "version": "0.0.1",
+    "version": "0.1.0",
     "publisher": "nones",
     "engines": {
         "vscode": "^1.20.0"
@@ -17,8 +17,12 @@
     "contributes": {
         "commands": [
             {
+                "command": "extension.appendPairing",
+                "title": "Add co-author strings"
+            },
+            {
                 "command": "extension.selectRepo",
-                "title": "Change repo for pairing candidates"
+                "title": "Change repo"
             },
             {
                 "command": "extension.addBuddy",
@@ -26,7 +30,7 @@
             },
             {
                 "command": "extension.stopPairing",
-                "title": "Stop pairing"
+                "title": "Remove all pairing buddies"
             }
         ]
     },
