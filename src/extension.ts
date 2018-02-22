@@ -74,7 +74,7 @@ class CoAuthoring {
 
   public async appendPairing () {
     if (this.pairingSet.size === 0) {
-      vscode.window.showErrorMessage('No pairing buddies selected 😔.');
+      vscode.window.showErrorMessage('No pairing buddies selected.');
       return;
     }
 
@@ -173,7 +173,9 @@ class CoAuthoring {
         }
       })
 
-    let who = await vscode.window.showQuickPick(users);
+    let who = await vscode.window.showQuickPick(users, {
+      placeHolder: 'Add/remove pairing buddies'
+    });
 
     if (who !== undefined) {
       if (who.indexOf(SELECTED_CHAR) === 0) {
@@ -203,7 +205,10 @@ class CoAuthoring {
     if (repos.length > 1) {
       this.currentRepo = await vscode.window.showQuickPick(
         repos
-          .map(([value, repo]: [string, Repo]) => value)
+          .map(([value, repo]: [string, Repo]) => value),
+        {
+          placeHolder: 'Pick a repository / submodule'
+        }
       );
     } else {
       this.currentRepo = repos[0][0];
