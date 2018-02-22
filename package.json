@@ -4,6 +4,10 @@
     "description": "Easily add/remove coauthors from a developing session",
     "version": "0.1.0",
     "publisher": "nones",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/rjimenezda/vscode-coauthor.git"
+    },
     "engines": {
         "vscode": "^1.20.0"
     },
