@@ -1,7 +1,7 @@
 {
     "name": "git-coauthors",
-    "displayName": "git-coauthors",
-    "description": "Easily add/remove coauthors from a developing session",
+    "displayName": "Git Co-Authors",
+    "description": "Easily add/remove coauthors from a pair programming session",
     "version": "0.1.0",
     "publisher": "drrouman",
     "repository": {
@@ -22,19 +22,23 @@
         "commands": [
             {
                 "command": "extension.appendPairing",
-                "title": "Add co-author strings"
+                "title": "Add co-author strings",
+                "category": "Co-Author"
             },
             {
                 "command": "extension.selectRepo",
-                "title": "Change repo"
+                "title": "Change repository",
+                "category": "Co-Author"
             },
             {
                 "command": "extension.addBuddy",
-                "title": "Change pairing buddies"
+                "title": "Change pairing buddies",
+                "category": "Co-Author"
             },
             {
                 "command": "extension.stopPairing",
-                "title": "Remove all pairing buddies"
+                "title": "Remove all pairing buddies",
+                "category": "Co-Author"
             }
         ]
     },
