@@ -9,7 +9,8 @@
         "url": "https://github.com/rjimenezda/vscode-coauthor.git"
     },
     "engines": {
-        "vscode": "^1.20.0"
+        "vscode": "^1.20.0",
+        "npm": "~5.6.0"
     },
     "categories": [
         "Other"
