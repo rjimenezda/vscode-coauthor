@@ -21,3 +21,7 @@ The extension will not work properly if the VSCode git extension has not loaded 
 ### 0.1.0
 
 Initial release
+
+## Attributions
+
+The icon was made with the awesome emojis open sourced by twitter: https://github.com/twitter/twemoji

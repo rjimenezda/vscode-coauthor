@@ -1,8 +1,9 @@
 {
     "name": "git-coauthors",
     "displayName": "Git Co-Authors",
-    "description": "Easily add/remove coauthors from a pair programming session",
+    "description": "Git co-authoring made easy",
     "version": "0.1.0",
+    "icon": "icon.png",
     "publisher": "drrouman",
     "repository": {
         "type": "git",
