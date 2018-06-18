@@ -123,7 +123,7 @@ class CoAuthoring {
 
   public getPairingString () {
     return [ ...this.pairingSet.values() ]
-      .map(buddy => `Co-authored-by ${buddy}`)
+      .map(buddy => `Co-authored-by: ${buddy}`)
       .join('\n');
   }
 
