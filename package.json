@@ -2,7 +2,7 @@
     "name": "git-coauthors",
     "displayName": "Git Co-Authors",
     "description": "Git co-authoring made easy",
-    "version": "0.1.0",
+    "version": "0.1.2",
     "icon": "icon.png",
     "publisher": "drrouman",
     "repository": {
